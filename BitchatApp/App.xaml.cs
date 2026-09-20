@@ -33,7 +33,7 @@ public partial class App : Application
         _mutex = new Mutex(true, "Bitchat.Windows.Gui", out var createdNew);
         if (!createdNew)
         {
-            MessageBox.Show("bitchat уже запущен - смотри трей у часов (синяя иконка b).", "bitchat",
+            MessageBox.Show("bitchat уже запущен - смотри трей у часов (чёрная иконка b).", "bitchat",
                 MessageBoxButton.OK, MessageBoxImage.Information);
             Shutdown();
             return;
