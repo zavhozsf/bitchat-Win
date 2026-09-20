@@ -4,7 +4,7 @@ using Xunit;
 namespace BitchatWindows.Tests;
 
 /// <summary>
-/// Official Cacophony/Noise-C vector for Noise_XX_25519_ChaChaPoly_SHA256 —
+/// Official Cacophony/Noise-C vector for Noise_XX_25519_ChaChaPoly_SHA256 -
 /// the same golden transcript the Android client is tested against.
 /// Proves byte-level wire compatibility of the handshake and transport ciphers.
 /// </summary>

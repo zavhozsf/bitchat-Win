@@ -124,7 +124,7 @@ public sealed class GossipSyncTests
 
             bobGossip.HandleRequestSync(alice.MyPeerId, RequestSyncPacket.Decode(filterPayload)!);
 
-            // Bob must send the missing message (ttl=0 copy) — announce is only in
+            // Bob must send the missing message (ttl=0 copy) - announce is only in
             // Bob's announcement cache if registered, which we skipped.
             var synced = sent.FirstOrDefault(p => p.Type == (byte)MessageType.Message);
             Assert.NotNull(synced);

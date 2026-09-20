@@ -15,7 +15,7 @@ public partial class NickWindow : Window
         NickBox.SelectAll();
         HintText.Text = pinned
             ? $"закреплён в конфиге. Дефолт устройства: {defaultNick} (anon + 4 цифры MAC). «Reset» снимет закрепление."
-            : $"дефолт устройства: {defaultNick} (anon + 4 цифры MAC). Введи имя и OK — будет закреплён.";
+            : $"дефолт устройства: {defaultNick} (anon + 4 цифры MAC). Введи имя и OK - будет закреплён.";
         SourceInitialized += (_, _) => DarkChrome.Apply(this);
         Loaded += (_, _) => NickBox.Focus();
     }

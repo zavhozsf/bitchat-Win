@@ -339,7 +339,7 @@ public sealed class BleTransport : IDisposable
                 {
                     lock (_deniedUntil)
                         _deniedUntil[address] = DateTime.UtcNow.AddMinutes(1);
-                    Diagnostic?.Invoke($"GATT access denied for {address:X12} (may require pairing) — retrying in 1 min");
+                    Diagnostic?.Invoke($"GATT access denied for {address:X12} (may require pairing) - retrying in 1 min");
                 }
                 else
                 {
@@ -436,7 +436,7 @@ public sealed class BleTransport : IDisposable
 
     private async Task<bool> StartPeripheralAdvertisingAsync()
     {
-        // The radio sometimes aborts the first attempt right after service creation — retry rounds.
+        // The radio sometimes aborts the first attempt right after service creation - retry rounds.
         for (var round = 0; round < 10 && !PeripheralStarted; round++)
         {
             if (round > 0) await Task.Delay(TimeSpan.FromSeconds(3));
@@ -454,13 +454,13 @@ public sealed class BleTransport : IDisposable
                     Diagnostic?.Invoke($"GATT advertising started ({label})");
                     return true;
                 }
-                Diagnostic?.Invoke($"GATT advertising {label}: {status} — trying next variant");
+                Diagnostic?.Invoke($"GATT advertising {label}: {status} - trying next variant");
                 _serviceProvider!.StopAdvertising();
             }
         }
 
         Diagnostic?.Invoke(
-            "peripheral advertising unavailable — central-only mode " +
+            "peripheral advertising unavailable - central-only mode " +
             "(the client scans and connects out to nearby peers)");
         return false;
     }

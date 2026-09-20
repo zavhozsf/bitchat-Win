@@ -290,7 +290,7 @@ public void SendPrivate(string content, string recipientPeerId)
         {
             InitiateHandshakeGuarded(recipientPeerId);
             _pendingPrivateMessages.Enqueue((recipientPeerId, messageId, content));
-            SystemMessage?.Invoke($"no session with {recipientPeerId[..8]} yet — handshake started, message queued");
+            SystemMessage?.Invoke($"no session with {recipientPeerId[..8]} yet - handshake started, message queued");
         }
 
         MessageReceived?.Invoke(new ChatMessage
@@ -400,7 +400,7 @@ public void SendPrivate(string content, string recipientPeerId)
         if (packet.Signature == null)
         {
             var detail = $"v{packet.Version} type=0x{packet.Type:X2} payload={packet.Payload.Length}B";
-            SystemMessage?.Invoke($"failed to sign packet ({detail}) — пришлите этот текст разработчику");
+            SystemMessage?.Invoke($"failed to sign packet ({detail}) - пришлите этот текст разработчику");
             return;
         }
         Dispatch(packet);
@@ -766,7 +766,7 @@ public void SendPrivate(string content, string recipientPeerId)
             _consecutiveDecryptFailures.Remove(peerId);
         }
         if (!_noise.HasEstablishedSession(peerId)) return;
-        SystemMessage?.Invoke($"🔒 сессия с {peerId[..8]} устарела — переустанавливаю шифрование");
+        SystemMessage?.Invoke($"🔒 сессия с {peerId[..8]} устарела - переустанавливаю шифрование");
         _noise.RemoveSession(peerId);
         Task.Run(() => InitiateHandshakeGuarded(peerId));
     }
@@ -1096,7 +1096,7 @@ public void SendPrivate(string content, string recipientPeerId)
             var content = File.ReadAllBytes(filePath);
             if (content.Length > MaxFileSizeBytes)
             {
-                SystemMessage?.Invoke($"файл больше {MaxFileSizeBytes / 1024 / 1024} МБ — не отправлен");
+                SystemMessage?.Invoke($"файл больше {MaxFileSizeBytes / 1024 / 1024} МБ - не отправлен");
                 return;
             }
             var file = new BitchatFilePacket(displayName, content.Length, GuessMime(filePath), content);
@@ -1146,7 +1146,7 @@ public void SendPrivate(string content, string recipientPeerId)
             var content = File.ReadAllBytes(filePath);
             if (content.Length > MaxFileSizeBytes)
             {
-                SystemMessage?.Invoke($"файл больше {MaxFileSizeBytes / 1024 / 1024} МБ — не отправлен");
+                SystemMessage?.Invoke($"файл больше {MaxFileSizeBytes / 1024 / 1024} МБ - не отправлен");
                 return;
             }
             var file = new BitchatFilePacket(displayName, content.Length, GuessMime(filePath), content);
@@ -1276,7 +1276,7 @@ private bool SendVoiceBurstPrivate(string peerId, byte[] burstBytes)
     {
         if (!_noise.HasEstablishedSession(peerId))
         {
-            SystemMessage?.Invoke($"нет шифрованной сессии с {peerId[..8]} — переустанавливаю, отправь голосовое после «🔒»");
+            SystemMessage?.Invoke($"нет шифрованной сессии с {peerId[..8]} - переустанавливаю, отправь голосовое после «🔒»");
             InitiateHandshakeGuarded(peerId);
             return false;
         }

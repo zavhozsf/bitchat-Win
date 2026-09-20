@@ -6,7 +6,7 @@ using Bitchat.Windows.Protocol;
 namespace Bitchat.Windows.Mesh;
 
 /// <summary>
-/// Gossip-based synchronization with on-demand GCS filters — compatible port of the
+/// Gossip-based synchronization with on-demand GCS filters - compatible port of the
 /// Android/iOS GossipSyncManager. Tracks seen public packets (ANNOUNCE, broadcast
 /// MESSAGE), periodically broadcasts REQUEST_SYNC and answers with packets the
 /// requester lacks (TTL=0, neighbor-only).

@@ -33,7 +33,7 @@ public partial class App : Application
         _mutex = new Mutex(true, "Bitchat.Windows.Gui", out var createdNew);
         if (!createdNew)
         {
-            MessageBox.Show("bitchat уже запущен — смотри трей у часов (синяя иконка b).", "bitchat",
+            MessageBox.Show("bitchat уже запущен - смотри трей у часов (синяя иконка b).", "bitchat",
                 MessageBoxButton.OK, MessageBoxImage.Information);
             Shutdown();
             return;
@@ -55,7 +55,7 @@ public partial class App : Application
 
         _tray = (TaskbarIcon)Resources["TrayIcon"];
         _tray.IconSource = LoadAppIcon();
-        _tray.ToolTipText = $"bitchat — {_vm.Nickname}";
+        _tray.ToolTipText = $"bitchat - {_vm.Nickname}";
         _tray.ContextMenu = BuildTrayMenu();
 
         _main = new MainWindow(_vm) { Owner = null };
@@ -78,24 +78,24 @@ public partial class App : Application
 
         _vm.TitleChanged += () =>
         {
-            _tray.ToolTipText = $"bitchat — {Runtime.Nickname} ({Runtime.Noise.MyPeerId})";
+            _tray.ToolTipText = $"bitchat - {Runtime.Nickname} ({Runtime.Noise.MyPeerId})";
         };
 
         _vm.UnreadChanged += total =>
         {
-            var baseText = $"bitchat — {Runtime.Nickname} ({Runtime.Noise.MyPeerId})";
+            var baseText = $"bitchat - {Runtime.Nickname} ({Runtime.Noise.MyPeerId})";
             _tray.ToolTipText = total > 0 ? $"({total} new) {baseText}" : baseText;
         };
 
         var ok = await Runtime.StartAsync();
         _vm.AddSystem(ok
-            ? "BLE mesh running — nearby bitchat devices will appear automatically"
+            ? "BLE mesh running - nearby bitchat devices will appear automatically"
             : "BLE transport failed to start. Check that Bluetooth is on.");
 
         if (ok)
-            _tray.ShowBalloonTip("bitchat работает", "Окно можно закрыть — свернётся в трей у часов. Сообщения придут уведомлением.", BalloonIcon.None);
+            _tray.ShowBalloonTip("bitchat работает", "Окно можно закрыть - свернётся в трей у часов. Сообщения придут уведомлением.", BalloonIcon.None);
         else
-            _tray.ShowBalloonTip("bitchat", "Bluetooth не запустился — проверь, включён ли адаптер.", BalloonIcon.Warning);
+            _tray.ShowBalloonTip("bitchat", "Bluetooth не запустился - проверь, включён ли адаптер.", BalloonIcon.Warning);
     }
 
     private ContextMenu BuildTrayMenu()
@@ -113,7 +113,7 @@ public partial class App : Application
 
     private void OnMessage(ChatMessage message)
     {
-        // Events arrive on WinRT threadpool threads — marshal everything to the UI thread.
+        // Events arrive on WinRT threadpool threads - marshal everything to the UI thread.
         Dispatcher.BeginInvoke(() =>
         {
             _vm.AddMessage(message);
@@ -122,7 +122,7 @@ public partial class App : Application
             if (!hidden) return;
 
             if (message.IsFromMe) return;
-            var title = message.IsPrivate ? $"bitchat PM from {message.Sender}" : $"bitchat — {message.Sender}";
+            var title = message.IsPrivate ? $"bitchat PM from {message.Sender}" : $"bitchat - {message.Sender}";
             _tray.ShowBalloonTip(title, message.Content, BalloonIcon.None);
         });
     }

@@ -6,7 +6,7 @@ using System.Text;
 namespace Bitchat.Windows.Protocol;
 
 /// <summary>
-/// BitchatFilePacket: TLV file transfer payload — byte-compatible with the mobile clients.
+/// BitchatFilePacket: TLV file transfer payload - byte-compatible with the mobile clients.
 /// TLVs: 0x01 filename (u16-len), 0x02 size (4 bytes), 0x03 mime (u16-len),
 /// 0x04 content (single TLV, 4-byte length). Unknown TLVs are skipped.
 /// The outer packet uses version 2 so payloads above 64 KiB are possible.

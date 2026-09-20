@@ -7,7 +7,7 @@ namespace Bitchat.Windows;
 
 /// <summary>
 /// Approximate location via public IP geolocation services (no keys required).
-/// Returns a geohash channel suggestion — the same flow the phone clients use
+/// Returns a geohash channel suggestion - the same flow the phone clients use
 /// (globe picker), minus the globe.
 /// </summary>
 public static class LocationService

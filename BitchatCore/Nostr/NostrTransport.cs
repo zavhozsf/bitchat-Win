@@ -100,7 +100,7 @@ public sealed class NostrTransport : IDisposable
                 if (ev != null)
                     EventReceived?.Invoke(subId, ev);
             }
-            // OK/NOTICE/EOSE/CLOSED — ignored
+            // OK/NOTICE/EOSE/CLOSED - ignored
         }
         catch
         {
@@ -234,7 +234,7 @@ public sealed class NostrTransport : IDisposable
                 }
                 catch
                 {
-                    // send failure — reconnect loop will handle
+                    // send failure - reconnect loop will handle
                 }
             });
         }

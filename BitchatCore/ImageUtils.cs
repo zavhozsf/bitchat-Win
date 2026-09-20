@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 namespace Bitchat.Windows;
 
 /// <summary>
-/// Image preprocessing for sending — mirrors the mobile clients: decode, scale the
+/// Image preprocessing for sending - mirrors the mobile clients: decode, scale the
 /// longest side down to maxDim, re-encode JPEG quality 85. Keeps files small enough
 /// for BLE fragmentation (phones reject anything over ~120 KB).
 /// </summary>

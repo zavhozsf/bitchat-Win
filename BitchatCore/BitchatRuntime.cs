@@ -117,7 +117,7 @@ public sealed class BitchatRuntime : IDisposable
 var ok = await Ble.StartAsync();
         if (ok && !Ble.PeripheralStarted)
         {
-            // The radio can take tens of seconds to warm up — keep retrying in the background.
+            // The radio can take tens of seconds to warm up - keep retrying in the background.
             _ = Task.Run(async () =>
             {
                 while (_started && !Ble.PeripheralStarted)

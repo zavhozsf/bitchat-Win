@@ -44,7 +44,7 @@ public sealed class FilePacketTests
     [Fact]
     public void Large_file_single_content_tlv()
     {
-        var content = new byte[70_000]; // > 65535 — one CONTENT TLV with 4-byte length
+        var content = new byte[70_000]; // > 65535 - one CONTENT TLV with 4-byte length
         new Random(1).NextBytes(content);
         var packet = new BitchatFilePacket("big.bin", content.Length, "application/octet-stream", content);
         var decoded = BitchatFilePacket.Decode(packet.Encode());
@@ -162,7 +162,7 @@ public sealed class FileSendTests
             var r2 = alice.ProcessHandshakeMessage(r1.Response!, bob.MyPeerId);
             bob.ProcessHandshakeMessage(r2.Response!, alice.MyPeerId);
 
-            var content = new byte[75_000]; // > 0xFFFF — must use v2
+            var content = new byte[75_000]; // > 0xFFFF - must use v2
             new Random(9).NextBytes(content);
             var file = new BitchatFilePacket("IMG_2026.JPG", content.Length, "image/jpeg", content);
             var encrypted = alice.Encrypt(new NoisePayload(NoisePayloadType.FileTransfer, file.Encode()).Encode(), bob.MyPeerId);

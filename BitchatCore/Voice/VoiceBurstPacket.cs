@@ -10,7 +10,7 @@ public enum VoiceBurstCodec : byte
 }
 
 /// <summary>
-/// One live push-to-talk packet — byte-compatible with the mobile clients.
+/// One live push-to-talk packet - byte-compatible with the mobile clients.
 /// Wire format: [burstID: 8][seq: UInt16 BE][flags: u8][payload...].
 /// Flags: 0x01 START (+codec byte), 0x00 frames (u16-len each, max 8),
 /// 0x02 END (u16 totalDataPackets, u32 durationMs), 0x04 canceled.

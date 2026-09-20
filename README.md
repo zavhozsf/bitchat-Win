@@ -1,6 +1,6 @@
 # bitchat-Win
 
-A Windows client for [bitchat](https://github.com/permissionlesstech/bitchat) —
+A Windows client for [bitchat](https://github.com/permissionlesstech/bitchat) -
 a decentralized, serverless, account-free mesh messenger that works over
 Bluetooth Low Energy and (optionally) Nostr relays. No phone numbers, no cloud,
 no accounts.
@@ -10,7 +10,7 @@ Bitchat-Win is wire-compatible with the bitchat apps for iOS/macOS and Android.
 > **Version:** 0.01
 > **Status:** ALPHA
 
-## ⚠️ Alpha — "AS IS"
+## ⚠️ Alpha - "AS IS"
 
 This is an **early alpha** release. It is provided **"AS IS"**, without warranty
 of any kind, express or implied, including but not limited to the warranties of
@@ -98,6 +98,21 @@ BitchatApp/            WPF GUI client (bitchat-gui)
 bitchat-windows/       console (TUI) client (bitchat)
 BitchatWindows.Tests/  xunit tests (protocol + Cacophony vectors)
 ```
+
+## Roadmap
+
+Work in progress and planned:
+
+- **Live voice streaming (push-to-talk).** Voice is currently recorded and sent
+  as an M4A file; the next step is real-time streaming of native
+  `VoiceBurstPacket` frames by extracting raw AAC access units directly from
+  Media Foundation (Source Reader, without re-muxing).
+- **Nostr private messages** (gift-wrapped envelopes / kind 1059).
+- **Persistent message history.** Gossip sync (REQUEST_SYNC) currently keeps its
+  cache in memory only; add on-disk persistence across restarts.
+- **Encrypted / password channels**, once the mobile clients re-enable them.
+- **Wi-Fi Aware** transport.
+- Broader BLE peripheral support and connection reliability.
 
 ## License
 

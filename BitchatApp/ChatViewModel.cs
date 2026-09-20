@@ -375,7 +375,7 @@ public sealed class ChatViewModel
         {
             if (target.IsGeohash)
             {
-                AddSystem("файлы в геоканалах пока не поддерживаются — только Mesh и личные чаты");
+                AddSystem("файлы в геоканалах пока не поддерживаются - только Mesh и личные чаты");
             }
             else
             {
@@ -456,7 +456,7 @@ public sealed class ChatViewModel
         var target = Selected ?? MeshConversation;
         if (target.IsGeohash)
         {
-            AddSystem("файлы в геоканалах пока не поддерживаются — только Mesh и личные чаты");
+            AddSystem("файлы в геоканалах пока не поддерживаются - только Mesh и личные чаты");
             return;
         }
         if (target.IsMesh)
@@ -470,14 +470,14 @@ public sealed class ChatViewModel
         if (string.IsNullOrWhiteSpace(nickname)) return;
         _runtime.SetNickname(nickname);
         TitleChanged?.Invoke();
-        AddSystem($"nickname set to {_runtime.Nickname} (pinned) — re-announced");
+        AddSystem($"nickname set to {_runtime.Nickname} (pinned) - re-announced");
     }
 
     public void ResetNickname()
     {
         _runtime.ResetNickname();
         TitleChanged?.Invoke();
-        AddSystem($"nickname reset to device default: {_runtime.Nickname} — re-announced");
+        AddSystem($"nickname reset to device default: {_runtime.Nickname} - re-announced");
     }
 
     // ---- helpers ----

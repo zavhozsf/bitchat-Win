@@ -33,7 +33,7 @@ public static class DarkChrome
         }
         catch
         {
-            // older systems without DWM color attributes — dark mode attr still applied above
+            // older systems without DWM color attributes - dark mode attr still applied above
         }
     }
 }

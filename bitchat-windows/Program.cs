@@ -24,7 +24,7 @@ internal static class Program
         _runtime.NostrMessageReceived += (geohash, nick, content) =>
             PrintLine($"[#$geohash] {nick ?? "nostr"}: {content}", ConsoleColor.Cyan);
 
-        PrintLine($"bitchat (console) — peer id {_runtime.Noise.MyPeerId}", ConsoleColor.DarkCyan);
+        PrintLine($"bitchat (console) - peer id {_runtime.Noise.MyPeerId}", ConsoleColor.DarkCyan);
         PrintLine($"nickname: {nickname} ({(NickStore.LoadNickname() != null ? "pinned" : "device default, reset: /nick reset")})",
             ConsoleColor.DarkCyan);
 
@@ -119,7 +119,7 @@ internal static class Program
             {
                 var peers = mesh.GetPeersSnapshot();
                 if (peers.Count == 0)
-                    PrintLine("no peers yet — waiting for nearby bitchat devices…", ConsoleColor.DarkGray);
+                    PrintLine("no peers yet - waiting for nearby bitchat devices…", ConsoleColor.DarkGray);
                 else
                 {
                     PrintLine($"peers ({peers.Count}):", ConsoleColor.Cyan);
@@ -139,7 +139,7 @@ internal static class Program
                 var peer = FindPeer(parts[1]);
                 if (peer == null)
                 {
-                    PrintLine($"no peer named '{parts[1]}' — try /peers", ConsoleColor.Yellow);
+                    PrintLine($"no peer named '{parts[1]}' - try /peers", ConsoleColor.Yellow);
                     break;
                 }
                 mesh.SendPrivate(parts[2], peer.PeerId);
@@ -161,7 +161,7 @@ internal static class Program
                 else
                 {
                     runtime.SetNickname(parts[1]);
-                    PrintLine($"nickname set to {runtime.Nickname} (pinned) — re-announced", ConsoleColor.DarkGray);
+                    PrintLine($"nickname set to {runtime.Nickname} (pinned) - re-announced", ConsoleColor.DarkGray);
                 }
                 break;
             }
@@ -246,7 +246,7 @@ internal static class Program
                 break;
 
             default:
-                PrintLine($"unknown command {cmd} — /help", ConsoleColor.Yellow);
+                PrintLine($"unknown command {cmd} - /help", ConsoleColor.Yellow);
                 break;
         }
     }
@@ -257,7 +257,7 @@ internal static class Program
         var detected = await LocationService.DetectAsync();
         if (detected == null)
         {
-            PrintLine("location detection failed — use /geo <geohash>", ConsoleColor.Yellow);
+            PrintLine("location detection failed - use /geo <geohash>", ConsoleColor.Yellow);
             return;
         }
         var place = detected.City != null ? $"{detected.City} ({detected.Country})" : $"{detected.Latitude:F2}, {detected.Longitude:F2}";

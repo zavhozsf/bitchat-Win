@@ -185,7 +185,7 @@ public sealed class NoiseService
 
             // Already established? No handshake needed.
             if (state.Session is { Established: true }) return null;
-            // Already mid-handshake as initiator — do not clobber it.
+            // Already mid-handshake as initiator - do not clobber it.
             if (state.PendingInitiator != null) return null;
 
             var handshake = NoiseHandshake.CreateInitiator(StaticIdentityKey);
@@ -229,7 +229,7 @@ public sealed class NoiseService
                     }
                     else
                     {
-                        // They should yield — keep our candidate, drop their m1
+                        // They should yield - keep our candidate, drop their m1
                         return new HandshakeResult(null, false, null);
                     }
                 }

@@ -4,7 +4,7 @@ namespace Bitchat.Windows.Voice;
 
 /// <summary>
 /// Extracts individual AAC access units from a Media Foundation encoded stream.
-/// MF's SinkWriter produces MP4/M4A containers — this parses the 'mdat' box using
+/// MF's SinkWriter produces MP4/M4A containers - this parses the 'mdat' box using
 /// 'stsz' sample sizes to split into individual access units.
 /// </summary>
 public static class Mp4AacExtractor

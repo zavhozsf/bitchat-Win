@@ -30,7 +30,7 @@ public partial class LocationPickerWindow : Window
             var result = await LocationService.DetectAsync(ScopeFromUi());
             if (result == null)
             {
-                DetectedText.Text = "не удалось определить — введи геохэш вручную";
+                DetectedText.Text = "не удалось определить - введи геохэш вручную";
                 return;
             }
             _detected = (result.Latitude, result.Longitude, result.City, result.Country);

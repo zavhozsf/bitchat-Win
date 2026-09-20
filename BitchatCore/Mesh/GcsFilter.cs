@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 namespace Bitchat.Windows.Mesh;
 
 /// <summary>
-/// Golomb-Coded Set (GCS) filter for gossip sync — byte-compatible port of the
+/// Golomb-Coded Set (GCS) filter for gossip sync - byte-compatible port of the
 /// Android/iOS bitchat implementation.
 /// h64(id) = first 8 bytes of SHA-256 over the 16-byte PacketId (big-endian, positive);
 /// values mapped to [0, M) via (h64 % M); deltas Golomb-Rice coded with parameter P,

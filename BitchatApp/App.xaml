@@ -5,7 +5,7 @@
              ShutdownMode="OnExplicitShutdown">
   <Application.Resources>
     <tb:TaskbarIcon x:Key="TrayIcon"
-                    ToolTipText="bitchat — starting…"
+                    ToolTipText="bitchat - starting…"
                     TrayMouseDoubleClick="TrayIcon_TrayMouseDoubleClick" />
 
     <!-- Buttons: unified subtle-convex dark style -->

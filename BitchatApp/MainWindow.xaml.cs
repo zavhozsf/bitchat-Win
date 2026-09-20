@@ -85,7 +85,7 @@ public partial class MainWindow : Window
 
         ConversationsList.SelectedItem = _vm.MeshConversation;
         NickText.Text = _vm.Nickname;
-        Title = $"bitchat — {_vm.Nickname} ({_vm.PeerId})";
+        Title = $"bitchat - {_vm.Nickname} ({_vm.PeerId})";
         Loaded += (_, _) => { InputBox.Focus(); };
     }
 
@@ -100,7 +100,7 @@ public partial class MainWindow : Window
 
     private void OnUnreadChanged(int total)
     {
-        var baseTitle = $"bitchat — {_vm.Nickname} ({_vm.PeerId})";
+        var baseTitle = $"bitchat - {_vm.Nickname} ({_vm.PeerId})";
         Title = total > 0 ? $"({total}) {baseTitle}" : baseTitle;
         UpdateTaskbarOverlay(total);
         UpdateStatusBar();
@@ -155,7 +155,7 @@ public partial class MainWindow : Window
         if (conv.IsMesh)
             HeaderText.Text = $"{_vm.Nickname} · {_vm.PeerId} · broadcast to everyone nearby";
         else if (conv.IsGeohash)
-            HeaderText.Text = $"geo channel {conv.Title} · via Nostr relays (/msg not needed — just type)";
+            HeaderText.Text = $"geo channel {conv.Title} · via Nostr relays (/msg not needed - just type)";
         else
             HeaderText.Text = $"PM → {conv.Title} · {conv.Key}";
     }
@@ -230,7 +230,7 @@ public partial class MainWindow : Window
                 if (parts.Length >= 2)
                 {
                     _vm.JoinGeohash(parts[1]);
-                    _vm.AddSystem($"joining geohash #{parts[1]} — connecting to relays…");
+                    _vm.AddSystem($"joining geohash #{parts[1]} - connecting to relays…");
                 }
                 else
                 {
@@ -305,7 +305,7 @@ public partial class MainWindow : Window
                 var geos = _vm.Conversations.Where(c => c.IsGeohash).Select(c => c.Title).ToList();
                 _vm.AddSystem(geos.Count > 0
                     ? "joined channels: " + string.Join(", ", geos)
-                    : "no geohash channels joined — /here or /geo <geohash>");
+                    : "no geohash channels joined - /here or /geo <geohash>");
                 break;
             }
             case "/block":
@@ -369,7 +369,7 @@ public partial class MainWindow : Window
                 QuitApp();
                 break;
             default:
-                _vm.AddSystem($"unknown command {parts[0]} — type / for suggestions");
+                _vm.AddSystem($"unknown command {parts[0]} - type / for suggestions");
                 break;
         }
     }
@@ -389,7 +389,7 @@ public partial class MainWindow : Window
             var target = _vm.Selected ?? _vm.MeshConversation;
             if (target.IsGeohash)
             {
-                _vm.AddSystem("голос в геоканалах пока не поддерживается — только Mesh и личные чаты");
+                _vm.AddSystem("голос в геоканалах пока не поддерживается - только Mesh и личные чаты");
                 return;
             }
             App.Runtime.Mesh.SetVoiceTarget(!target.IsMesh, target.IsMesh ? null : target.Key);
@@ -715,7 +715,7 @@ public partial class MainWindow : Window
         // Minimize to tray instead of exiting.
         e.Cancel = true;
         Hide();
-        _vm.AddSystem("окно свёрнуто в трей (иконка у часов) — там же Quit");
+        _vm.AddSystem("окно свёрнуто в трей (иконка у часов) - там же Quit");
     }
 
     private void Window_StateChanged(object sender, EventArgs e)

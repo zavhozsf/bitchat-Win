@@ -7,7 +7,7 @@ namespace Bitchat.Windows.Nostr;
 
 /// <summary>
 /// Geohash location channels over Nostr: kind 20000 ephemeral chat messages with
-/// ["g", geohash] and ["n", nickname] tags — protocol-compatible with bitchat mobile.
+/// ["g", geohash] and ["n", nickname] tags - protocol-compatible with bitchat mobile.
 /// </summary>
 public sealed class NostrService : IDisposable
 {
@@ -84,7 +84,7 @@ public sealed class NostrService : IDisposable
                         if (finished == connectTask && tcp.Connected)
                             _log($"tcp ok {host}:443 in {sw.ElapsedMilliseconds}ms");
                         else
-                            _log($"tcp TIMEOUT {host}:443 (5s) — outbound blocked for this process?");
+                            _log($"tcp TIMEOUT {host}:443 (5s) - outbound blocked for this process?");
                     }
                 }
                 catch (Exception nex) { _log($"network self-test failed: {nex.Message}"); }
@@ -141,7 +141,7 @@ public sealed class NostrService : IDisposable
         {
             MessageReceived?.Invoke(geohash, nickname, ev.Content, ev.Pubkey);
         }
-        // kind 20001 — presence, ignored for chat display
+        // kind 20001 - presence, ignored for chat display
     }
 
     private static string Sanitize(string geohash)
