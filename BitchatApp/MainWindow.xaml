@@ -121,7 +121,7 @@
                      BorderThickness="0" FocusVisualStyle="{x:Null}"
                      Padding="10,8" MinHeight="46" MaxLength="255" AcceptsReturn="True" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
-                     SelectionBrush="#5A5E64"
+                     SelectionBrush="#5A5E64" CaretBrush="#A6ABB3"
                      KeyDown="InputBox_KeyDown" TextChanged="InputBox_TextChanged" />
           </Border>
         </Grid>

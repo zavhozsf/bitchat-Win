@@ -11,7 +11,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\bitchat.ico</ApplicationIcon>
-    <Version>0.0.1</Version>
+    <Version>0.0.1.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

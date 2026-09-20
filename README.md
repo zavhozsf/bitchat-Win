@@ -7,7 +7,7 @@ no accounts.
 
 Bitchat-Win is wire-compatible with the bitchat apps for iOS/macOS and Android.
 
-> **Version:** 0.01
+> **Version:** 0.012
 > **Status:** ALPHA
 
 ## ⚠️ Alpha - "AS IS"
@@ -88,7 +88,7 @@ Delete that file to generate a new identity.
 ## Download
 
 Prebuilt binaries for Windows x64 are attached to the
-[v0.01 release](https://github.com/zavhozsf/bitchat-Win/releases/tag/v0.01).
+[v0.012 release](https://github.com/zavhozsf/bitchat-Win/releases/tag/v0.012).
 
 ## Structure
 

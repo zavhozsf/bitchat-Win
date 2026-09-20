@@ -9,7 +9,7 @@
     <RootNamespace>Bitchat.Windows</RootNamespace>
     <AssemblyName>bitchat</AssemblyName>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <Version>0.0.1</Version>
+    <Version>0.0.1.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
