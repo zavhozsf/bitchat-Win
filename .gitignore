@@ -1,0 +1,29 @@
+# Build output
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+artifacts/
+publish/
+release/
+Release/
+*.user
+*.suo
+
+# .NET
+*.binlog
+*.sln.docstates
+project.lock.json
+packages/
+
+# Identity / private keys — never commit
+identity.bin
+*.identity
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.vs/
+.vscode/
+.idea/
+*.swp

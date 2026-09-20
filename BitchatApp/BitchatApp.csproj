@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Bitchat.Windows.App</RootNamespace>
+    <AssemblyName>bitchat-gui</AssemblyName>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\bitchat.ico</ApplicationIcon>
+    <Version>0.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\bitchat.ico" />
+    <Resource Include="Assets\icon16.png" />
+    <Resource Include="Assets\icon32.png" />
+    <Resource Include="Assets\icon128.png" />
+    <Resource Include="Assets\icon256.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BitchatCore\BitchatCore.csproj" />
+  </ItemGroup>
+
+</Project>

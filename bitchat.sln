@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitchatCore", "BitchatCore\BitchatCore.csproj", "{F98DFC99-8030-4979-B1A9-CC019CFE7055}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitchatWindows", "bitchat-windows\BitchatWindows.csproj", "{D050E652-D39A-4A71-9AF4-9061E58F0814}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitchatApp", "BitchatApp\BitchatApp.csproj", "{DA75B088-2587-443C-B8C7-65C25B16B142}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitchatWindows.Tests", "BitchatWindows.Tests\BitchatWindows.Tests.csproj", "{5A81BCEB-CC74-4090-A606-36D26076C571}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F98DFC99-8030-4979-B1A9-CC019CFE7055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F98DFC99-8030-4979-B1A9-CC019CFE7055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F98DFC99-8030-4979-B1A9-CC019CFE7055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F98DFC99-8030-4979-B1A9-CC019CFE7055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D050E652-D39A-4A71-9AF4-9061E58F0814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D050E652-D39A-4A71-9AF4-9061E58F0814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D050E652-D39A-4A71-9AF4-9061E58F0814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D050E652-D39A-4A71-9AF4-9061E58F0814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA75B088-2587-443C-B8C7-65C25B16B142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA75B088-2587-443C-B8C7-65C25B16B142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA75B088-2587-443C-B8C7-65C25B16B142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA75B088-2587-443C-B8C7-65C25B16B142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A81BCEB-CC74-4090-A606-36D26076C571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A81BCEB-CC74-4090-A606-36D26076C571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A81BCEB-CC74-4090-A606-36D26076C571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A81BCEB-CC74-4090-A606-36D26076C571}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

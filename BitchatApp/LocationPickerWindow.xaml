@@ -1,0 +1,31 @@
+<Window x:Class="Bitchat.Windows.App.LocationPickerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="geo channel" Width="460" SizeToContent="Height" WindowStartupLocation="CenterOwner" Icon="Assets\bitchat.ico"
+        Background="#1E1F22" ResizeMode="NoResize">
+  <StackPanel Margin="16">
+    <TextBlock Text="Join a location channel (Nostr)" Foreground="#E8EAED" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,4" />
+    <TextBlock Text="Approximate location via IP → geohash channel, like the globe picker on phones."
+               Foreground="#9AA0A6" FontSize="11" TextWrapping="Wrap" Margin="0,0,0,10" />
+
+    <Button x:Name="DetectButton" Content="📍 Detect my location" Click="Detect_Click"
+            Background="#4CA8FF" Foreground="White" BorderThickness="0" Padding="12,8" HorizontalAlignment="Left" />
+    <TextBlock x:Name="DetectedText" Foreground="#81C995" FontSize="12" Margin="0,8,0,0" TextWrapping="Wrap" />
+
+    <TextBlock Text="Channel precision" Foreground="#9AA0A6" FontSize="12" Margin="0,14,0,4" />
+    <StackPanel Orientation="Horizontal">
+      <RadioButton x:Name="ScopeCity" Content="City (5)" IsChecked="True" Foreground="#E8EAED" Margin="0,0,14,0" GroupName="scope" />
+      <RadioButton x:Name="ScopeNeighborhood" Content="Neighborhood (6)" GroupName="scope" Foreground="#E8EAED" Margin="0,0,14,0" />
+      <RadioButton x:Name="ScopeBlock" Content="Block (7)" GroupName="scope" Foreground="#E8EAED" />
+    </StackPanel>
+
+    <TextBlock Text="…or enter a geohash manually" Foreground="#9AA0A6" FontSize="12" Margin="0,16,0,4" />
+    <TextBox x:Name="GeohashBox" FontSize="14" Background="#26282C" Foreground="#E8EAED" BorderBrush="#3A3D42"
+             Padding="8,6" MaxLength="12" KeyDown="GeohashBox_KeyDown" />
+
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,14,0,0">
+      <Button Content="Cancel" Click="Cancel_Click" Background="#2B2D31" Foreground="#E8EAED" BorderThickness="0" Padding="12,6" Margin="0,0,8,0" />
+      <Button Content="Join channel" Click="Join_Click" Background="#4CA8FF" Foreground="White" BorderThickness="0" Padding="16,6" />
+    </StackPanel>
+  </StackPanel>
+</Window>

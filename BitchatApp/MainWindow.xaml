@@ -1,0 +1,259 @@
+<Window x:Class="Bitchat.Windows.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="bitchat" Height="620" Width="980" Icon="Assets\bitchat.ico" MinHeight="440" MinWidth="720"
+        Background="#1E1F22" Closing="Window_Closing" StateChanged="Window_StateChanged">
+  <Window.Resources>
+    <Style TargetType="TextBlock">
+      <Setter Property="Foreground" Value="#E8EAED" />
+    </Style>
+    <Style TargetType="Button">
+      <Setter Property="Background" Value="#2B2D31" />
+      <Setter Property="Foreground" Value="#E8EAED" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Padding" Value="10,6" />
+    </Style>
+    <BooleanToVisibilityConverter x:Key="BoolToVis" />
+  </Window.Resources>
+  <DockPanel>
+    <StatusBar DockPanel.Dock="Bottom" Background="#16171A" Foreground="#9AA0A6" FontSize="11" Padding="10,4">
+      <TextBlock x:Name="StatusBarText" Text="…" />
+    </StatusBar>
+    <Grid Margin="10,10,10,4">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="250" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <!-- Conversations -->
+    <DockPanel Grid.Column="0" Margin="0,0,10,0">
+      <DockPanel DockPanel.Dock="Top" LastChildFill="True" Margin="2,2,0,6">
+        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+          <Button Content="📍 geo" Click="GeoButton_Click" Padding="6,2" Margin="0,0,6,0" />
+          <Button Content="/nick" Click="NickButton_Click" Padding="6,2" />
+        </StackPanel>
+        <TextBlock x:Name="NickText" FontSize="12" Foreground="#9AA0A6" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+      </DockPanel>
+      <TextBlock DockPanel.Dock="Top" Text="CONVERSATIONS" FontSize="11" Foreground="#9AA0A6" Margin="2,8,0,6" />
+      <ListBox x:Name="ConversationsList" ItemsSource="{Binding Conversations}" Background="#26282C" BorderThickness="0" FocusVisualStyle="{x:Null}"
+               SelectionChanged="ConversationsList_SelectionChanged" PreviewMouseLeftButtonDown="ConversationsList_PreviewMouseDown" FontSize="13">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <DockPanel Margin="4,7">
+              <Ellipse DockPanel.Dock="Left" Width="9" Height="9" Margin="0,0,7,0" VerticalAlignment="Center"
+                       Fill="#7CFC9B" Visibility="{Binding HasUnread, Converter={StaticResource BoolToVis}}" />
+              <TextBlock DockPanel.Dock="Right" Text="{Binding Unread, StringFormat={}{0} new}" FontSize="11"
+                         Foreground="#FFD27D" VerticalAlignment="Center" Margin="10,0,4,0"
+                         Visibility="{Binding HasUnread, Converter={StaticResource BoolToVis}}" />
+              <TextBlock Text="{Binding Title}" FontSize="14" FontWeight="SemiBold" TextTrimming="CharacterEllipsis">
+                <TextBlock.Style>
+                  <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#E8EAED" />
+                    <Style.Triggers>
+                      <DataTrigger Binding="{Binding IsMesh}" Value="True">
+                        <Setter Property="Foreground" Value="#8AB4F8" />
+                      </DataTrigger>
+                      <DataTrigger Binding="{Binding IsGeohash}" Value="True">
+                        <Setter Property="Foreground" Value="#78D9EC" />
+                      </DataTrigger>
+                    </Style.Triggers>
+                  </Style>
+                </TextBlock.Style>
+              </TextBlock>
+            </DockPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </DockPanel>
+
+    <!-- Conversation view -->
+    <DockPanel Grid.Column="1">
+      <DockPanel DockPanel.Dock="Top" Margin="0,0,0,6">
+<TextBlock x:Name="HeaderText" FontSize="13" Foreground="#9AA0A6" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+      </DockPanel>
+
+      <DockPanel DockPanel.Dock="Bottom" Margin="0,10,0,0" LastChildFill="True">
+        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Top">
+          <Button x:Name="SendButton" Content="Send" Click="SendButton_Click"
+                  Style="{StaticResource SendButtonStyle}" />
+          <StackPanel Margin="8,0,0,0">
+            <Button x:Name="AttachButton" Content="📎" Click="AttachButton_Click"
+                    Style="{StaticResource AttachButtonStyle}" />
+            <Button x:Name="VoiceButton" Content="🎤" Click="VoiceButton_Click"
+                    Style="{StaticResource AttachButtonStyle}" Margin="0,2,0,0" />
+          </StackPanel>
+        </StackPanel>
+        <Border DockPanel.Dock="Top" x:Name="PendingPanel" Visibility="Collapsed" Background="#23252A"
+                BorderBrush="#3A3D42" BorderThickness="1" CornerRadius="8" Padding="8,6" Margin="0,0,0,6">
+          <StackPanel Orientation="Horizontal">
+            <Border Background="#1A1B1E" CornerRadius="6" Width="44" Height="44" ClipToBounds="True">
+              <Image x:Name="PendingThumb" Width="44" Height="44" Stretch="Uniform" />
+            </Border>
+            <TextBlock x:Name="PendingText" Text="…" Foreground="#E8EAED" FontSize="12"
+                       VerticalAlignment="Center" Margin="10,0,0,0" TextTrimming="CharacterEllipsis" />
+            <Button x:Name="PendingRemove" Content="✕" Click="PendingRemove_Click"
+                    Background="#2B2D31" Foreground="#FF8FD3" BorderThickness="0"
+                    Padding="8,3" Margin="12,0,0,0" VerticalAlignment="Center" />
+          </StackPanel>
+        </Border>
+        <Grid>
+          <Popup x:Name="SuggestionsPopup" Placement="Top" PlacementTarget="{Binding ElementName=InputBox}"
+                 StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
+            <Border Background="#2B2D31" BorderBrush="#3A3D42" BorderThickness="1" CornerRadius="6"
+                    Padding="4" MinWidth="480" MaxHeight="250">
+              <ListBox x:Name="SuggestionsList" Background="Transparent" BorderThickness="0"
+                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontSize="13"
+                       PreviewKeyDown="Suggestions_KeyDown" MouseDoubleClick="Suggestions_MouseDoubleClick">
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="2,3">
+                      <TextBlock Text="{Binding Command}" FontWeight="SemiBold" Foreground="#8AB4F8" Margin="0,0,10,0" />
+                      <TextBlock Text="{Binding Args}" Foreground="#FFD27D" Margin="0,0,10,0" />
+                      <TextBlock Text="{Binding Description}" Foreground="#9AA0A6" />
+                    </StackPanel>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Border>
+          </Popup>
+          <Border Background="#26282C" BorderBrush="#3A3D42" BorderThickness="1" CornerRadius="9">
+            <TextBox x:Name="InputBox" FontSize="14" Background="Transparent" Foreground="#E8EAED"
+                     BorderThickness="0" FocusVisualStyle="{x:Null}"
+                     Padding="10,8" MinHeight="46" MaxLength="255" AcceptsReturn="True" VerticalContentAlignment="Top"
+                     TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                     SelectionBrush="#5A5E64"
+                     KeyDown="InputBox_KeyDown" TextChanged="InputBox_TextChanged" />
+          </Border>
+        </Grid>
+      </DockPanel>
+
+      <ListBox x:Name="MessagesList" Background="#26282C" BorderThickness="0" FocusVisualStyle="{x:Null}"
+               ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontSize="13" Padding="6"
+               MouseRightButtonUp="MessagesList_MouseRightButtonUp">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <StackPanel Margin="4,3">
+              <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Time, StringFormat=HH:mm}" FontSize="11" Foreground="#9AA0A6" Margin="0,0,8,0" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Header}" FontSize="13" FontWeight="SemiBold">
+                  <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                      <Setter Property="Foreground" Value="#E8EAED" />
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding Kind}" Value="Private">
+                          <Setter Property="Foreground" Value="#FF8FD3" />
+                        </DataTrigger>
+                      </Style.Triggers>
+                    </Style>
+                  </TextBlock.Style>
+                </TextBlock>
+              </StackPanel>
+              <!-- audio voice message -->
+              <StackPanel Margin="34,2,0,0" Orientation="Horizontal">
+                <StackPanel.Style>
+                  <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                      <DataTrigger Binding="{Binding IsAudio}" Value="True">
+                        <Setter Property="Visibility" Value="Visible" />
+                      </DataTrigger>
+                    </Style.Triggers>
+                  </Style>
+                </StackPanel.Style>
+                <Button Click="AudioPlay_Click" Tag="{Binding}" Padding="12,4" FontSize="13" FontWeight="SemiBold">
+                  <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                      <Setter Property="Content" Value="▶" />
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsPlaying}" Value="True">
+                          <Setter Property="Content" Value="⏸" />
+                        </DataTrigger>
+                      </Style.Triggers>
+                    </Style>
+                  </Button.Style>
+                </Button>
+                <ProgressBar x:Name="AudioProgress" Width="180" Height="8" Margin="10,0,0,0" VerticalAlignment="Center"
+                             Minimum="0" Maximum="1" Value="{Binding PlayPosition}" />
+                <TextBlock Text="{Binding PlayTimeText}" FontSize="11" Foreground="#9AA0A6"
+                           Margin="8,0,0,0" VerticalAlignment="Center" />
+              </StackPanel>
+              <!-- image / file attachment (Kind == File) -->
+              <StackPanel Margin="34,2,0,0">
+                <StackPanel.Style>
+                  <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                      <DataTrigger Binding="{Binding Kind}" Value="File">
+                        <Setter Property="Visibility" Value="Visible" />
+                      </DataTrigger>
+                    </Style.Triggers>
+                  </Style>
+                </StackPanel.Style>
+                <Border Background="#1A1B1E" CornerRadius="8" HorizontalAlignment="Left"
+                        Cursor="Hand" MouseLeftButtonDown="MediaImage_Click" Tag="{Binding}">
+                  <Border.Style>
+                    <Style TargetType="Border">
+                      <Setter Property="Visibility" Value="Visible" />
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsAudio}" Value="True">
+                          <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                      </Style.Triggers>
+                    </Style>
+                  </Border.Style>
+                  <Image MaxHeight="220" MaxWidth="360" Stretch="Uniform" Margin="4"
+                         Source="{Binding FilePath}" />
+                </Border>
+                <TextBlock Text="{Binding FileBadge}" FontSize="12" Foreground="#9AA0A6" Margin="0,3,0,0"
+                           Cursor="Hand" MouseLeftButtonDown="MediaImage_Click" Tag="{Binding}">
+                  <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                      <Setter Property="Visibility" Value="Visible" />
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsAudio}" Value="True">
+                          <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                      </Style.Triggers>
+                    </Style>
+                  </TextBlock.Style>
+                </TextBlock>
+              </StackPanel>
+              <TextBlock Text="{Binding Content}" TextWrapping="Wrap" Margin="34,1,0,0">
+                <TextBlock.Style>
+                  <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#E8EAED" />
+                    <Style.Triggers>
+                      <DataTrigger Binding="{Binding Kind}" Value="System">
+                        <Setter Property="Foreground" Value="#8AB4F8" />
+                        <Setter Property="FontStyle" Value="Italic" />
+                      </DataTrigger>
+                      <DataTrigger Binding="{Binding IsOutgoing}" Value="True">
+                        <Setter Property="Foreground" Value="#81C995" />
+                      </DataTrigger>
+                      <DataTrigger Binding="{Binding Kind}" Value="File">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                      </DataTrigger>
+                    </Style.Triggers>
+                  </Style>
+                </TextBlock.Style>
+              </TextBlock>
+              <TextBlock Text="{Binding Status}" FontSize="11" Margin="34,1,0,0">
+                <TextBlock.Style>
+                  <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#9AA0A6" />
+                    <Style.Triggers>
+                      <DataTrigger Binding="{Binding Status}" Value="✓✓ прочитано">
+                        <Setter Property="Foreground" Value="#8AB4F8" />
+                      </DataTrigger>
+                    </Style.Triggers>
+                  </Style>
+                </TextBlock.Style>
+              </TextBlock>
+            </StackPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </DockPanel>
+    </Grid>
+  </DockPanel>
+</Window>
